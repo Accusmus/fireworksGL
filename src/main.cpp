@@ -51,6 +51,8 @@
 #include "geometry.h"
 #include "image.h"
 #include "camera.h"
+#include "transforms.h"
+#include "firework.h"
 
 // Camera
 Camera *camera;
@@ -277,12 +279,19 @@ int main() {
 	// Copy Projection Matrix to Shader
 	glUniformMatrix4fv(glGetUniformLocation(program, "u_Projection"), 1, GL_FALSE, glm::value_ptr(projectionMatrix));
 
+	firework firewk = firework();
+	glm::vec3 pos(0.0f,0.0f,0.0f);
+	glm::vec3 speed(0.0f,0.0001f,0.0001f);
+	firewk.setPosition(pos);
+	firewk.setSpeed(speed);
+
 	// ----------------------------------------
 	// Main Render loop
 	// ----------------------------------------
 	float time = glfwGetTime();
 	float total = 0.0f;
 	int frame_count = 0;
+
 
 	// Main Loop
 	while (!glfwWindowShouldClose(window)) {
@@ -318,14 +327,23 @@ int main() {
 
 		glUniformMatrix4fv(glGetUniformLocation(program, "u_View"),  1, GL_FALSE, glm::value_ptr(camera->getViewMatrix()));
 
-		glUniformMatrix4fv(glGetUniformLocation(program, "u_Model"), 1, GL_FALSE, glm::value_ptr(glm::mat4()));
-
 
 		// Bind Vertex Array Object
 		glBindVertexArray(vao);
 
-		// Draw Elements (Triangles)
-		glDrawElements(GL_TRIANGLES, indexes.size()*3, GL_UNSIGNED_INT, NULL);
+		glm::vec3 fwPos = firewk.getPosition();
+
+        float sc[16];
+
+        translate(fwPos.x, fwPos.y, fwPos.z, sc);
+
+        glUniformMatrix4fv(glGetUniformLocation(program, "u_Model"), 1, GL_FALSE, sc);
+
+        // Draw Elements (Triangles)
+        glDrawElements(GL_TRIANGLES, indexes.size()*3, GL_UNSIGNED_INT, NULL);
+
+        firewk.update();
+
 
 		// Unbind Vertex Array Object
 		glBindVertexArray(0);
