@@ -46,6 +46,7 @@
 #include "glm/glm.hpp"
 #include "glm/gtx/string_cast.hpp"
 
+void createCube(std::vector<glm::vec4> &buffer, std::vector<glm::ivec3> &indexes);
 
 // --------------------------------------------------------------------------------
 // Create Blade of Grass - Positions, Normals, Colours

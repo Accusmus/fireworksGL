@@ -74,6 +74,163 @@ void createBlade(std::vector<glm::vec4> &buffer, std::vector<glm::ivec3> &indexe
 	indexes.push_back(glm::ivec3(6, 7, 4));
 }
 
+// Create Cube with Positions and Normals
+void createCube(std::vector<glm::vec4> &buffer, std::vector<glm::ivec3> &indexes) {
+	// ---- Top ----
+	// Left-Top-Back - 0
+	buffer.push_back(glm::vec4(-1.0f,  1.0f, -1.0f,  1.0f)); // Position
+	buffer.push_back(glm::vec4( 0.0f,  1.0f,  0.0f,  0.0f)); // Normal
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f)); // Colour
+
+	// Right-Top-Back - 1
+	buffer.push_back(glm::vec4( 1.0f,  1.0f, -1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f,  1.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Left-Top-Front - 2
+	buffer.push_back(glm::vec4(-1.0f,  1.0f,  1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f,  1.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Right-Top-Front - 3
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f,  1.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Top
+	indexes.push_back(glm::ivec3(0, 2, 3));
+	indexes.push_back(glm::ivec3(0, 3, 1));
+
+
+	// ---- Bottom ----
+	// Left-Bottom-Back - 4
+	buffer.push_back(glm::vec4(-1.0f, -1.0f, -1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f, -1.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Right-Bottom-Back - 5
+	buffer.push_back(glm::vec4( 1.0f, -1.0f, -1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f, -1.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Left-Bottom-Front - 6
+	buffer.push_back(glm::vec4(-1.0f, -1.0f,  1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f, -1.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Right-Bottom-Front - 7
+	buffer.push_back(glm::vec4( 1.0f, -1.0f,  1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f, -1.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Bottom
+	indexes.push_back(glm::ivec3(4, 6, 7));
+	indexes.push_back(glm::ivec3(4, 7, 5));
+
+	// ---- Left ----
+	// Left-Top-Back - 8
+	buffer.push_back(glm::vec4(-1.0f,  1.0f, -1.0f,  1.0f));
+	buffer.push_back(glm::vec4(-1.0f,  0.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Left-Bottom-Back - 9
+	buffer.push_back(glm::vec4(-1.0f, -1.0f, -1.0f,  1.0f));
+	buffer.push_back(glm::vec4(-1.0f,  0.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Left-Top-Front - 10
+	buffer.push_back(glm::vec4(-1.0f,  1.0f,  1.0f,  1.0f));
+	buffer.push_back(glm::vec4(-1.0f,  0.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Left-Bottom-Front - 11
+	buffer.push_back(glm::vec4(-1.0f, -1.0f,  1.0f,  1.0f));
+	buffer.push_back(glm::vec4(-1.0f,  0.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Left
+	indexes.push_back(glm::ivec3(8,  9, 11));
+	indexes.push_back(glm::ivec3(8, 11, 10));
+
+
+	// ---- Right ----
+	// Right-Top-Back - 12
+	buffer.push_back(glm::vec4( 1.0f,  1.0f, -1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 1.0f,  0.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Right-Bottom-Back - 13
+	buffer.push_back(glm::vec4( 1.0f, -1.0f, -1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 1.0f,  0.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Right-Top-Front - 14
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 1.0f,  0.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Right-Bottom-Front - 15
+	buffer.push_back(glm::vec4( 1.0f, -1.0f,  1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 1.0f,  0.0f,  0.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Right
+	indexes.push_back(glm::ivec3(14, 15, 13));
+	indexes.push_back(glm::ivec3(14, 13, 12));
+
+
+	// ---- Front ----
+	// Left-Top-Front - 16
+	buffer.push_back(glm::vec4(-1.0f,  1.0f,  1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f,  0.0f,  1.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Right-Top-Front - 17
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f,  0.0f,  1.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Left-Bottom-Front - 18
+	buffer.push_back(glm::vec4(-1.0f, -1.0f,  1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f,  0.0f,  1.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Right-Bottom-Front - 19
+	buffer.push_back(glm::vec4( 1.0f, -1.0f,  1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f,  0.0f,  1.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Front
+	indexes.push_back(glm::ivec3(16, 18, 19));
+	indexes.push_back(glm::ivec3(16, 19, 17));
+
+
+	// ---- Back ----
+	// Left-Top-Back - 20
+	buffer.push_back(glm::vec4(-1.0f,  1.0f, -1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f,  0.0f, -1.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Right-Top-Back - 21
+	buffer.push_back(glm::vec4( 1.0f,  1.0f, -1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f,  0.0f, -1.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Left-Bottom-Back - 22
+	buffer.push_back(glm::vec4(-1.0f, -1.0f, -1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f,  0.0f, -1.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Right-Bottom-Back - 23
+	buffer.push_back(glm::vec4( 1.0f, -1.0f, -1.0f,  1.0f));
+	buffer.push_back(glm::vec4( 0.0f,  0.0f, -1.0f,  0.0f));
+	buffer.push_back(glm::vec4( 1.0f,  1.0f,  1.0f,  0.0f));
+
+	// Back
+	indexes.push_back(glm::ivec3(21, 23, 22));
+	indexes.push_back(glm::ivec3(21, 22, 20));
+}
+
 // --------------------------------------------------------------------------------
 // Create Ground - Positions, Normals, Colours
 void createGround(std::vector<glm::vec4> &buffer, std::vector<glm::ivec3> &indexes) {
