@@ -48,17 +48,22 @@ class firework
         virtual ~firework();
 
         void setPosition(glm::vec3 pos);
-        void setSpeed(glm::vec3 spd);
+        void setAcceleration(glm::vec3 acc);
         void update();
 
         glm::vec3 getPosition();
+        bool isAlive();
 
     protected:
 
     private:
         glm::vec3 position;
-        glm::vec3 speed;
-        int lifeSpan;
+        glm::vec3 acceleration;
+        glm::vec3 velocity;
+
+        glm::vec3 gravity;
+
+        bool alive;
 };
 
 #endif // FIREWORK_H

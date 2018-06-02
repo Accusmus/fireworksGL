@@ -40,6 +40,8 @@
     #include <GLFW/glfw3.h>
 #endif
 
+#include "firework.h"
+
 
 
 class firework_manager
@@ -48,9 +50,16 @@ class firework_manager
         firework_manager();
         virtual ~firework_manager();
 
+        void update();
+        void createFirework(glm::vec3 pos, glm::vec3 acc);
+
+        int getNumOfFireworks();
+        glm::vec3 getFireworkPos(int id);
+
     protected:
 
     private:
+        std::vector<firework> fireworks;
 };
 
 #endif // FIREWORK_MANAGER_H

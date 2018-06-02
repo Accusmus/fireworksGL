@@ -94,7 +94,7 @@
 	<intrin.h>
 	<arm_neon.h>
 
-1527832921 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/main.cpp
+1527928485 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/main.cpp
 	<iostream>
 	<fstream>
 	<cmath>
@@ -124,7 +124,7 @@
 	"image.h"
 	"camera.h"
 	"transforms.h"
-	"firework.h"
+	"firework_manager.h"
 
 1527558588 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/shader.h
 	<iostream>
@@ -196,10 +196,10 @@
 	<GL/glut.h>
 	<GLFW/glfw3.h>
 
-1527832864 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework.cpp
+1527928039 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework.cpp
 	"firework.h"
 
-1527832649 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework.h
+1527925382 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework.h
 	<iostream>
 	<vector>
 	<glm/glm.hpp>
@@ -220,10 +220,10 @@
 	<GL/glut.h>
 	<GLFW/glfw3.h>
 
-1527830711 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework_manager.cpp
+1527926026 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework_manager.cpp
 	"firework_manager.h"
 
-1527831406 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework_manager.h
+1527914996 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework_manager.h
 	<iostream>
 	<vector>
 	<GL/glew.h>
@@ -242,4 +242,5 @@
 	<GL/glew.h>
 	<GL/glut.h>
 	<GLFW/glfw3.h>
+	"firework.h"
 

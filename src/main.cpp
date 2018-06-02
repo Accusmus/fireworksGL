@@ -52,7 +52,7 @@
 #include "image.h"
 #include "camera.h"
 #include "transforms.h"
-#include "firework.h"
+#include "firework_manager.h"
 
 // Camera
 Camera *camera;
@@ -144,7 +144,7 @@ int main() {
 	int window_height = 600;
 
 	// Create Window
-	GLFWwindow *window = createWindow(600, 600, "Example 21 - Instanced Rendering", 3, 2);
+	GLFWwindow *window = createWindow(600, 600, "Assignment 4 - Fireworks", 3, 2);
 
 	// Check Window
 	if (window == NULL) {
@@ -274,23 +274,30 @@ int main() {
 	glm::mat4 projectionMatrix;
 
 	// Calculate Perspective Projection
-	projectionMatrix = glm::perspective(glm::radians(67.0f), 1.0f, 0.2f, 50.0f);
+	projectionMatrix = glm::perspective(glm::radians(67.0f), 1.0f, 0.01f, 300.0f);
 
 	// Copy Projection Matrix to Shader
 	glUniformMatrix4fv(glGetUniformLocation(program, "u_Projection"), 1, GL_FALSE, glm::value_ptr(projectionMatrix));
 
-	firework firewk = firework();
-	glm::vec3 pos(0.0f,0.0f,0.0f);
-	glm::vec3 speed(0.0f,0.0001f,0.0001f);
-	firewk.setPosition(pos);
-	firewk.setSpeed(speed);
+	srand(glfwGetTime());
+
+	firework_manager fManager = firework_manager();
+	for(int i = 0; i < 20; i++){
+        float xAcc = (rand() % 20 - 10)* 0.002;
+        float yAcc = (rand() % 4 + 3) * 0.1f;
+        float zAcc = (rand() % 20 - 10)* 0.002;
+
+        glm::vec3 pos(0.0f + (i+0.002),-20.0f,-30.0f);
+        glm::vec3 speed(xAcc,yAcc,zAcc);
+        fManager.createFirework(pos, speed);
+	}
 
 	// ----------------------------------------
 	// Main Render loop
 	// ----------------------------------------
 	float time = glfwGetTime();
-	float total = 0.0f;
-	int frame_count = 0;
+	float total = 0.0f, updates = 0.0f;
+	int frame_count = 0, update_count = 0;
 
 
 	// Main Loop
@@ -312,10 +319,28 @@ int main() {
 		// Frames Per Second Counter
 		total += dt;
 		frame_count++;
+
+		updates += dt;
+
+        //this will update roughly 60 times a second
+		if(updates >= 0.0166f){
+            //reset update
+            std::cout << update_count << std::endl;
+            update_count++;
+            updates = 0.0f;
+
+            //update all objects
+            fManager.update();
+		}
+
+
+
 		if(total >= 1.0f) {
 			total = 0.0f;
 			std::cout << "fps: " << frame_count << std::endl;
 			frame_count = 0;
+			update_count = 0;
+
 		}
 
 		// ----------------------------------------
@@ -331,19 +356,17 @@ int main() {
 		// Bind Vertex Array Object
 		glBindVertexArray(vao);
 
-		glm::vec3 fwPos = firewk.getPosition();
+		for(size_t i = 0; i < fManager.getNumOfFireworks(); i++){
+            float sc[16];
+            glm::vec3 fwPos = fManager.getFireworkPos(i);
 
-        float sc[16];
+            translate(fwPos.x, fwPos.y, fwPos.z, sc);
 
-        translate(fwPos.x, fwPos.y, fwPos.z, sc);
+            glUniformMatrix4fv(glGetUniformLocation(program, "u_Model"), 1, GL_FALSE, sc);
 
-        glUniformMatrix4fv(glGetUniformLocation(program, "u_Model"), 1, GL_FALSE, sc);
-
-        // Draw Elements (Triangles)
-        glDrawElements(GL_TRIANGLES, indexes.size()*3, GL_UNSIGNED_INT, NULL);
-
-        firewk.update();
-
+            // Draw Elements (Triangles)
+            glDrawElements(GL_TRIANGLES, indexes.size()*3, GL_UNSIGNED_INT, NULL);
+		}
 
 		// Unbind Vertex Array Object
 		glBindVertexArray(0);
