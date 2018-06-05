@@ -57,11 +57,14 @@ class firework_manager
 
         int getNumOfFireworks();
         glm::vec3 getFireworkPos(int id);
+        glm::vec3 getFireworkColour(int id);
 
     protected:
 
     private:
         std::vector<firework> fireworks;
+
+        glm::vec3 createRandomColour();
 };
 
 #endif // FIREWORK_MANAGER_H

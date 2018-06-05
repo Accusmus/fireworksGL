@@ -264,7 +264,7 @@ int main() {
 	//createGround(buffer, indexes);
 	//createCube(buffer, indexes);
 	glm::vec3 colour(1.0, 0.0, 0.0);
-	createSphereData(buffer, indexes, 0.1, 5, 5, colour);
+	createSphereData(buffer, indexes, 0.3, 5, 5, colour);
 	std::cout << indexes.size() << std::endl;
 
 	// Load Vertex Data
@@ -359,8 +359,8 @@ int main() {
 
             glUniformMatrix4fv(glGetUniformLocation(program, "u_Model"), 1, GL_FALSE, sc);
 
-            glm::vec3 colour = glm::vec3(0.0f, 1.0f, 0.0f);
-            glUniform3f(glGetUniformLocation(program, "u_Colour"), 0.0f, 1.0f, 0.0f);
+            glm::vec3 fwCol = fManager.getFireworkColour(i);
+            glUniform3f(glGetUniformLocation(program, "u_Colour"), fwCol.x, fwCol.y, fwCol.z);
 
             // Draw Elements (Triangles)
             glDrawElements(GL_TRIANGLES, indexes.size()*3, GL_UNSIGNED_INT, NULL);
@@ -395,9 +395,9 @@ int main() {
 }
 
 void update(firework_manager &fManager, int update_num){
-    if(update_num == 1 || update_num == 15 || update_num == 30 || update_num == 45){
-        fManager.createNumFireworks(1);
-    }
+    //if(update_num == 1 || update_num == 15 || update_num == 30 || update_num == 45){
+        fManager.createNumFireworks(50);
+    // }
     fManager.update();
 }
 

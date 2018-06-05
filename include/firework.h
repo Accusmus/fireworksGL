@@ -51,7 +51,9 @@ class firework
         void setAcceleration(glm::vec3 acc);
         void update();
 
+        void setColour(glm::vec3 col);
         glm::vec3 getPosition();
+        glm::vec3 getColour();
         bool isAlive();
 
     protected:
@@ -60,6 +62,8 @@ class firework
         glm::vec3 position;
         glm::vec3 acceleration;
         glm::vec3 velocity;
+
+        glm::vec3 colour;
 
         glm::vec3 gravity;
 

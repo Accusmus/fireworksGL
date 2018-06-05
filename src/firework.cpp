@@ -30,8 +30,16 @@ void firework::update(){
     }
 }
 
+void firework::setColour(glm::vec3 col){
+    colour = col;
+}
+
 glm::vec3 firework::getPosition(){
     return position;
+}
+
+glm::vec3 firework::getColour(){
+    return colour;
 }
 
 bool firework::isAlive(){
