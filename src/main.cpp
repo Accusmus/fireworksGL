@@ -146,7 +146,7 @@ int main() {
 	int window_height = 600;
 
 	// Create Window
-	GLFWwindow *window = createWindow(600, 600, "Assignment 4 - Fireworks", 3, 2);
+	GLFWwindow *window = createWindow(window_width, window_height, "Assignment 4 - Fireworks", 3, 2);
 
 	// Check Window
 	if (window == NULL) {
@@ -189,7 +189,8 @@ int main() {
 	glDepthFunc(GL_LEQUAL);
 
 	glFrontFace(GL_CCW);
-	glEnable(GL_CULL_FACE);
+	//glEnable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
 
 	// Get Maximum Anistropic level
 	GLfloat maxAnistropy = 0.0f;
@@ -259,9 +260,10 @@ int main() {
 	std::vector<glm::ivec3> indexes;
 
 	// Create Ground
-	createBlade(buffer, indexes);
+	//createBlade(buffer, indexes);
 	//createGround(buffer, indexes);
 	//createCube(buffer, indexes);
+	createSphereData(buffer, indexes, 0.1, 5, 5);
 	std::cout << indexes.size() << std::endl;
 
 	// Load Vertex Data
@@ -389,8 +391,9 @@ int main() {
 }
 
 void update(firework_manager &fManager, int update_num){
-    fManager.createNumFireworks(50);
-    if(update_num == 1){std::cout << "current Fireworks: " << fManager.getNumOfFireworks() << std::endl;}
+    if(update_num == 1 || update_num == 15 || update_num == 30 || update_num == 45){
+        fManager.createNumFireworks(1);
+    }
     fManager.update();
 }
 
