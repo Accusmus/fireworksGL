@@ -3,6 +3,7 @@
 firework::firework()
 {
     gravity = glm::vec3(0.0f, -0.002f, 0.0f);
+    size = 1.0f;
     alive = true;
 }
 
@@ -34,12 +35,20 @@ void firework::setColour(glm::vec3 col){
     colour = col;
 }
 
+void firework::setSize(float s){
+    size = s;
+}
+
 glm::vec3 firework::getPosition(){
     return position;
 }
 
 glm::vec3 firework::getColour(){
     return colour;
+}
+
+float firework::getSize(){
+    return size;
 }
 
 bool firework::isAlive(){

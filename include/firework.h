@@ -52,8 +52,10 @@ class firework
         void update();
 
         void setColour(glm::vec3 col);
+        void setSize(float s);
         glm::vec3 getPosition();
         glm::vec3 getColour();
+        float getSize();
         bool isAlive();
 
     protected:
@@ -66,6 +68,8 @@ class firework
         glm::vec3 colour;
 
         glm::vec3 gravity;
+
+        float size;
 
         bool alive;
 };

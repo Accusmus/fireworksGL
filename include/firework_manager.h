@@ -51,13 +51,15 @@ class firework_manager
         virtual ~firework_manager();
 
         void update();
-        void createFirework(glm::vec3 pos, glm::vec3 acc);
-        void createFirework();
-        void createNumFireworks(int num);
+        void createFirework(glm::vec3 pos, glm::vec3 acc, float size);
+        void createFirework(float size);
+        void createNumFireworks(int num, float size);
 
         int getNumOfFireworks();
         glm::vec3 getFireworkPos(int id);
         glm::vec3 getFireworkColour(int id);
+        float getFireworkSize(int id);
+        void setFireworkSize(int id, float s);
 
     protected:
 

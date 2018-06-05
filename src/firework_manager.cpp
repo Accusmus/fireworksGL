@@ -24,14 +24,15 @@ void firework_manager::update(){
     }
 }
 
-void firework_manager::createFirework(glm::vec3 pos, glm::vec3 acc){
+void firework_manager::createFirework(glm::vec3 pos, glm::vec3 acc, float size){
     firework firewk = firework();
+    firewk.setSize(size);
     firewk.setPosition(pos);
     firewk.setAcceleration(acc);
     fireworks.push_back(firewk);
 }
 
-void firework_manager::createFirework(){
+void firework_manager::createFirework(float size){
     float xAcc, yAcc, zAcc;
     glm::vec3 pos, speed;
 
@@ -43,14 +44,16 @@ void firework_manager::createFirework(){
     speed = glm::vec3(xAcc,yAcc,zAcc);
 
     firework firewk = firework();
+    firewk.setSize(size);
     firewk.setPosition(pos);
     firewk.setAcceleration(speed);
+    firewk.setSize(1.0f);
     fireworks.push_back(firewk);
 }
 
-void firework_manager::createNumFireworks(int num){
+void firework_manager::createNumFireworks(int num, float size){
     for(int i = 0; i < num; i++){
-        createFirework();
+        createFirework(size);
         glm::vec3 col = createRandomColour();
         fireworks.back().setColour(col);
     }
@@ -66,6 +69,14 @@ glm::vec3 firework_manager::getFireworkColour(int id){
 
 glm::vec3 firework_manager::getFireworkPos(int id){
     return fireworks[id].getPosition();
+}
+
+float firework_manager::getFireworkSize(int id){
+    return fireworks[id].getSize();
+}
+
+void firework_manager::setFireworkSize(int id, float s){
+    fireworks[id].setSize(s);
 }
 
 //private funcions

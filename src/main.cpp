@@ -352,12 +352,15 @@ int main() {
 		glBindVertexArray(vao);
 
 		for(size_t i = 0; i < fManager.getNumOfFireworks(); i++){
-            float sc[16];
+            float tr[16], sc[16], res[16];
+            float fwSize = fManager.getFireworkSize(i);
             glm::vec3 fwPos = fManager.getFireworkPos(i);
 
-            translate(fwPos.x, fwPos.y, fwPos.z, sc);
+            translate(fwPos.x, fwPos.y, fwPos.z, tr);
+            scale(fwSize, fwSize, fwSize, sc);
+            multiply44(tr, sc, res);
 
-            glUniformMatrix4fv(glGetUniformLocation(program, "u_Model"), 1, GL_FALSE, sc);
+            glUniformMatrix4fv(glGetUniformLocation(program, "u_Model"), 1, GL_FALSE, res);
 
             glm::vec3 fwCol = fManager.getFireworkColour(i);
             glUniform3f(glGetUniformLocation(program, "u_Colour"), fwCol.x, fwCol.y, fwCol.z);
@@ -396,7 +399,8 @@ int main() {
 
 void update(firework_manager &fManager, int update_num){
     //if(update_num == 1 || update_num == 15 || update_num == 30 || update_num == 45){
-        fManager.createNumFireworks(50);
+        float s = (rand() % 200 + 1) * 0.01f;
+        fManager.createNumFireworks(1, s);
     // }
     fManager.update();
 }
