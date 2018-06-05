@@ -31,6 +31,29 @@ void firework_manager::createFirework(glm::vec3 pos, glm::vec3 acc){
     fireworks.push_back(firewk);
 }
 
+void firework_manager::createFirework(){
+    float xAcc, yAcc, zAcc;
+    glm::vec3 pos, speed;
+
+    xAcc = (rand() % 60 - 30)* 0.002;
+    yAcc = (rand() % 20 + 10) * 0.015f;
+    zAcc = (rand() % 60 - 30)* 0.002;
+
+    pos = glm::vec3(0.0f,-20.0f,-30.0f);
+    speed = glm::vec3(xAcc,yAcc,zAcc);
+
+    firework firewk = firework();
+    firewk.setPosition(pos);
+    firewk.setAcceleration(speed);
+    fireworks.push_back(firewk);
+}
+
+void firework_manager::createNumFireworks(int num){
+    for(int i = 0; i < num; i++){
+        createFirework();
+    }
+}
+
 int firework_manager::getNumOfFireworks(){
     return fireworks.size();
 }

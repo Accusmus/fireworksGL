@@ -126,8 +126,10 @@ void onCursorPosition(GLFWwindow *window, double x, double y) {
 	camera->onCursorPosition(window, x, y);
 }
 
+void update(firework_manager &fManager, int update_num);
+
 // --------------------------------------------------------------------------------
-// Example 21 - Instanced-Rendering Grass
+
 // --------------------------------------------------------------------------------
 int main() {
 	// Set Error Callback
@@ -282,16 +284,6 @@ int main() {
 	srand(glfwGetTime());
 
 	firework_manager fManager = firework_manager();
-	for(int i = 0; i < 20; i++){
-        float xAcc = (rand() % 20 - 10)* 0.002;
-        float yAcc = (rand() % 4 + 3) * 0.1f;
-        float zAcc = (rand() % 20 - 10)* 0.002;
-
-        glm::vec3 pos(0.0f + (i+0.002),-20.0f,-30.0f);
-        glm::vec3 speed(xAcc,yAcc,zAcc);
-        fManager.createFirework(pos, speed);
-	}
-
 	// ----------------------------------------
 	// Main Render loop
 	// ----------------------------------------
@@ -325,11 +317,11 @@ int main() {
         //this will update roughly 60 times a second
 		if(updates >= 0.0166f){
             //reset update
-            std::cout << update_count << std::endl;
             update_count++;
             updates = 0.0f;
 
-            //update all objects
+            update(fManager, update_count);
+
             fManager.update();
 		}
 
@@ -394,6 +386,12 @@ int main() {
 	glfwTerminate();
 
 	return 0;
+}
+
+void update(firework_manager &fManager, int update_num){
+    fManager.createNumFireworks(50);
+    if(update_num == 1){std::cout << "current Fireworks: " << fManager.getNumOfFireworks() << std::endl;}
+    fManager.update();
 }
 
 

@@ -25,7 +25,7 @@ void firework::update(){
     acceleration = glm::vec3(0.0f, 0.0f, 0.0f);
     position += velocity;
 
-    if(velocity.y <= 0){
+    if(velocity.y <= -0.05f){
         alive = false;
     }
 }

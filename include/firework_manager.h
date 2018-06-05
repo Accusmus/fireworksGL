@@ -52,6 +52,8 @@ class firework_manager
 
         void update();
         void createFirework(glm::vec3 pos, glm::vec3 acc);
+        void createFirework();
+        void createNumFireworks(int num);
 
         int getNumOfFireworks();
         glm::vec3 getFireworkPos(int id);
