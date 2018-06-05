@@ -263,7 +263,8 @@ int main() {
 	//createBlade(buffer, indexes);
 	//createGround(buffer, indexes);
 	//createCube(buffer, indexes);
-	createSphereData(buffer, indexes, 0.1, 5, 5);
+	glm::vec3 colour(1.0, 0.0, 0.0);
+	createSphereData(buffer, indexes, 0.1, 5, 5, colour);
 	std::cout << indexes.size() << std::endl;
 
 	// Load Vertex Data
@@ -357,6 +358,9 @@ int main() {
             translate(fwPos.x, fwPos.y, fwPos.z, sc);
 
             glUniformMatrix4fv(glGetUniformLocation(program, "u_Model"), 1, GL_FALSE, sc);
+
+            glm::vec3 colour = glm::vec3(0.0f, 1.0f, 0.0f);
+            glUniform3f(glGetUniformLocation(program, "u_Colour"), 0.0f, 1.0f, 0.0f);
 
             // Draw Elements (Triangles)
             glDrawElements(GL_TRIANGLES, indexes.size()*3, GL_UNSIGNED_INT, NULL);

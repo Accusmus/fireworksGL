@@ -261,7 +261,7 @@ void createGround(std::vector<glm::vec4> &buffer, std::vector<glm::ivec3> &index
 
 // --------------------------------------------------------------------------------
 // Create Sphere with Positions and Normals
-void createSphereData(std::vector<glm::vec4> &buffer, std::vector<glm::ivec3> &indexes, float r, int sub1, int sub2) {
+void createSphereData(std::vector<glm::vec4> &buffer, std::vector<glm::ivec3> &indexes, float r, int sub1, int sub2, glm::vec3 colour) {
 	// Longitude
 	for(int i1 = 0; i1 < sub1; i1++) {
 		// Theta [0, pi]
@@ -281,10 +281,12 @@ void createSphereData(std::vector<glm::vec4> &buffer, std::vector<glm::ivec3> &i
 			// Calculate normal
 			glm::vec4 u = glm::normalize(glm::vec4(p.x, p.y, p.z, 0.0f));
 
+			glm::vec4 c = glm::vec4(colour, 0.0f);
+
 			// Add position, normal and UV to buffer
 			buffer.push_back(p);
 			buffer.push_back(u);
-			buffer.push_back(glm::vec4(phi / (M_PI*2.0f), theta / M_PI, 0.0f, 1.0f));
+			buffer.push_back(c);
 
 
 			// Latitude offset
