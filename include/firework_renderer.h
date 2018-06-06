@@ -1,11 +1,10 @@
-#ifndef FIREWORK_H
-#define FIREWORK_H
+#ifndef FIREWORK_RENDERER_H
+#define FIREWORK_RENDERER_H
 
 // System Headers
 #include <iostream>
 #include <vector>
 #include <glm/glm.hpp>
-#include "particle.h"
 // OpenGL Headers
 #if defined(_WIN32)
 	#include <GL/glew.h>
@@ -41,18 +40,27 @@
     #include <GLFW/glfw3.h>
 #endif
 
+// GLM Headers
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
-class firework: public particle
+#include "renderer.h"
+
+
+class firework_renderer: public renderer
 {
     public:
-        firework();
-        virtual ~firework();
+        firework_renderer();
+        virtual ~firework_renderer();
 
-        void update();
+        void renderObj();
+
+        void setBufferObjData(std::vector<glm::vec4> data, std::vector<glm::ivec3> indexes);
 
     protected:
 
     private:
 };
 
-#endif // FIREWORK_H
+#endif // FIREWORK_RENDERER_H

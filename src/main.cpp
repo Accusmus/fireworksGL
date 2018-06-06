@@ -53,6 +53,7 @@
 #include "camera.h"
 #include "transforms.h"
 #include "firework_manager.h"
+#include "firework_renderer.h"
 
 // Camera
 Camera *camera;
@@ -213,47 +214,60 @@ int main() {
 	// Create GLSL Program and VAOs, VBOs
 	// ----------------------------------------
 
-	// Load GLSL Program
-	GLuint program = loadProgram("./shader/colour.vert.glsl",
-								 NULL, NULL, NULL,
-								 "./shader/colour.frag.glsl");
 
-	// Use Program
-	glUseProgram(program);
+	//firework_renderer fireworkRenderer = firework_renderer();
 
-	// ----------------------------------------
-	// Vertex Array Objects
-	// ----------------------------------------
-	// Vertex Array Objects (VAO)
-	GLuint vao;
+//	fireworkRenderer.setUpProgram("./shader/colour.vert.glsl",
+//								 NULL, NULL, NULL,
+//								 "./shader/colour.frag.glsl");
 
-	// Vertex Buffer Objects (VBO)
-	GLuint vbo;
+//	// Load GLSL Program
+//	GLuint program = loadProgram("./shader/colour.vert.glsl",
+//								 NULL, NULL, NULL,
+//								 "./shader/colour.frag.glsl");
 
-	// Element Buffer Objects (EBO)
-	GLuint ebo;
+    //fireworkRenderer.initBuffers();
+    //fireworkRenderer.setViewMatrix(camera->getViewMatrix());
 
-	// Create VAO, VBO & EBO
-	glGenVertexArrays(1, &vao);
-	glGenBuffers(1, &vbo);
-	glGenBuffers(1, &ebo);
+//	// Use Program
+//	glUseProgram(program);
+//
+//	// ----------------------------------------
+//	// Vertex Array Objects
+//	// ----------------------------------------
+//	// Vertex Array Objects (VAO)
+//	GLuint vao;
+//
+//	// Vertex Buffer Objects (VBO)
+//	GLuint vbo;
+//
+//	// Element Buffer Objects (EBO)
+//	GLuint ebo;
+//
+//	// Create VAO, VBO & EBO
+//	glGenVertexArrays(1, &vao);
+//	glGenBuffers(1, &vbo);
+//	glGenBuffers(1, &ebo);
+//
+//	// Copy View Matrix to Shader
+//	glUniformMatrix4fv(glGetUniformLocation(program, "u_View"),  1, GL_FALSE, glm::value_ptr(camera->getViewMatrix()));
+//
+//	glBindVertexArray(vao);
+//	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+//
+//    	// Set Vertex Attribute Pointers
+//	glVertexAttribPointer(glGetAttribLocation(program, "vert_Position"), 4, GL_FLOAT, GL_FALSE, 12 * sizeof(GLfloat), NULL);
+//	glVertexAttribPointer(glGetAttribLocation(program, "vert_Normal"),   4, GL_FLOAT, GL_FALSE, 12 * sizeof(GLfloat), (GLvoid*)(4*sizeof(float)));
+//	glVertexAttribPointer(glGetAttribLocation(program, "vert_Colour"),   4, GL_FLOAT, GL_FALSE, 12 * sizeof(GLfloat), (GLvoid*)(8*sizeof(float)));
+//
+//	// Enable Vertex Attribute Arrays
+//	glEnableVertexAttribArray(glGetAttribLocation(program, "vert_Position"));
+//	glEnableVertexAttribArray(glGetAttribLocation(program, "vert_Normal"));
+//	glEnableVertexAttribArray(glGetAttribLocation(program, "vert_Colour"));
 
-	// Copy View Matrix to Shader
-	glUniformMatrix4fv(glGetUniformLocation(program, "u_View"),  1, GL_FALSE, glm::value_ptr(camera->getViewMatrix()));
+    firework_manager fManager = firework_manager();
 
-	glBindVertexArray(vao);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-
-    	// Set Vertex Attribute Pointers
-	glVertexAttribPointer(glGetAttribLocation(program, "vert_Position"), 4, GL_FLOAT, GL_FALSE, 12 * sizeof(GLfloat), NULL);
-	glVertexAttribPointer(glGetAttribLocation(program, "vert_Normal"),   4, GL_FLOAT, GL_FALSE, 12 * sizeof(GLfloat), (GLvoid*)(4*sizeof(float)));
-	glVertexAttribPointer(glGetAttribLocation(program, "vert_Colour"),   4, GL_FLOAT, GL_FALSE, 12 * sizeof(GLfloat), (GLvoid*)(8*sizeof(float)));
-
-	// Enable Vertex Attribute Arrays
-	glEnableVertexAttribArray(glGetAttribLocation(program, "vert_Position"));
-	glEnableVertexAttribArray(glGetAttribLocation(program, "vert_Normal"));
-	glEnableVertexAttribArray(glGetAttribLocation(program, "vert_Colour"));
 
 	// Vertex and Index buffers (host)
 	std::vector<glm::vec4> buffer;
@@ -265,28 +279,28 @@ int main() {
 	//createCube(buffer, indexes);
 	glm::vec3 colour(1.0, 0.0, 0.0);
 	createSphereData(buffer, indexes, 0.3, 5, 5, colour);
-	std::cout << indexes.size() << std::endl;
 
-	// Load Vertex Data
-	glBufferData(GL_ARRAY_BUFFER, buffer.size() * sizeof(glm::vec4), buffer.data(), GL_STATIC_DRAW);
+	//fireworkRenderer.setBufferObjData(buffer, indexes);
+	fManager.initRenderer(buffer, indexes, camera->getViewMatrix());
 
-	// Load Element Data
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexes.size() * sizeof(glm::ivec3), indexes.data(), GL_STATIC_DRAW);
+//	// Load Vertex Data
+//	glBufferData(GL_ARRAY_BUFFER, buffer.size() * sizeof(glm::vec4), buffer.data(), GL_STATIC_DRAW);
+//
+//	// Load Element Data
+//	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexes.size() * sizeof(glm::ivec3), indexes.data(), GL_STATIC_DRAW);
 
 	// ----------------------------------------
 	// Projection Matrix
 	// ----------------------------------------
-	glm::mat4 projectionMatrix;
+//	glm::mat4 projectionMatrix;
+//
+//	// Calculate Perspective Projection
+//	projectionMatrix = glm::perspective(glm::radians(67.0f), 1.0f, 0.01f, 300.0f);
 
-	// Calculate Perspective Projection
-	projectionMatrix = glm::perspective(glm::radians(67.0f), 1.0f, 0.01f, 300.0f);
+	//fireworkRenderer.setProjectionMatrix(projectionMatrix);
 
 	// Copy Projection Matrix to Shader
-	glUniformMatrix4fv(glGetUniformLocation(program, "u_Projection"), 1, GL_FALSE, glm::value_ptr(projectionMatrix));
-
-	srand(glfwGetTime());
-
-	firework_manager fManager = firework_manager();
+	//glUniformMatrix4fv(glGetUniformLocation(program, "u_Projection"), 1, GL_FALSE, glm::value_ptr(projectionMatrix));
 	// ----------------------------------------
 	// Main Render loop
 	// ----------------------------------------
@@ -343,13 +357,11 @@ int main() {
 		camera->update(dt);
 
 		// Use Program
-		glUseProgram(program);
-
-		glUniformMatrix4fv(glGetUniformLocation(program, "u_View"),  1, GL_FALSE, glm::value_ptr(camera->getViewMatrix()));
+		//glUseProgram(program);
 
 
 		// Bind Vertex Array Object
-		glBindVertexArray(vao);
+		//glBindVertexArray(vao);
 
 		for(size_t i = 0; i < fManager.getNumOfFireworks(); i++){
             float tr[16], sc[16], res[16];
@@ -360,13 +372,16 @@ int main() {
             scale(fwSize, fwSize, fwSize, sc);
             multiply44(tr, sc, res);
 
-            glUniformMatrix4fv(glGetUniformLocation(program, "u_Model"), 1, GL_FALSE, res);
+            //fireworkRenderer.setModelMatrix(res);
 
-            glm::vec3 fwCol = fManager.getFireworkColour(i);
-            glUniform3f(glGetUniformLocation(program, "u_Colour"), fwCol.x, fwCol.y, fwCol.z);
+            //glUniformMatrix4fv(glGetUniformLocation(program, "u_Model"), 1, GL_FALSE, res);
 
+            //glm::vec3 fwCol = fManager.getFireworkColour(i);
+            //glUniform3f(glGetUniformLocation(program, "u_Colour"), fwCol.x, fwCol.y, fwCol.z);
+            fManager.render(i,indexes.size()*3, res);
             // Draw Elements (Triangles)
-            glDrawElements(GL_TRIANGLES, indexes.size()*3, GL_UNSIGNED_INT, NULL);
+//            glDrawElements(GL_TRIANGLES, indexes.size()*3, GL_UNSIGNED_INT, NULL);
+            //fManager.render(indexes.size()*3);
 		}
 
 		// Unbind Vertex Array Object
@@ -379,13 +394,15 @@ int main() {
 		// Poll window events
 		glfwPollEvents();
 	}
-	// Delete VAO, VBO & EBO
-	glDeleteVertexArrays(1, &vao);
-	glDeleteBuffers(1, &vbo);
-	glDeleteBuffers(1, &ebo);
-
-	// Delete Program
-	glDeleteProgram(program);
+	fManager.deleteRenderObj();
+	//fireworkRenderer.deleteObjects();
+//	// Delete VAO, VBO & EBO
+//	glDeleteVertexArrays(1, &vao);
+//	glDeleteBuffers(1, &vbo);
+//	glDeleteBuffers(1, &ebo);
+//
+//	// Delete Program
+//	glDeleteProgram(program);
 
 	// Stop receiving events for the window and free resources; this must be
 	// called from the main thread and should not be invoked from a callback
@@ -398,10 +415,10 @@ int main() {
 }
 
 void update(firework_manager &fManager, int update_num){
-    //if(update_num == 1 || update_num == 15 || update_num == 30 || update_num == 45){
+    if(update_num == 1 || update_num == 15 || update_num == 30 || update_num == 45){
         float s = (rand() % 200 + 1) * 0.01f;
-        fManager.createNumFireworks(1, s);
-    // }
+        fManager.createNumFireworks(10, s);
+    }
     fManager.update();
 }
 

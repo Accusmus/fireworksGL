@@ -43,8 +43,11 @@
 		<Unit filename="include/camera.h" />
 		<Unit filename="include/firework.h" />
 		<Unit filename="include/firework_manager.h" />
+		<Unit filename="include/firework_renderer.h" />
 		<Unit filename="include/geometry.h" />
 		<Unit filename="include/image.h" />
+		<Unit filename="include/particle.h" />
+		<Unit filename="include/renderer.h" />
 		<Unit filename="include/shader.h" />
 		<Unit filename="include/stb_image.h" />
 		<Unit filename="include/transforms.h" />
@@ -54,9 +57,12 @@
 		<Unit filename="src/camera.cpp" />
 		<Unit filename="src/firework.cpp" />
 		<Unit filename="src/firework_manager.cpp" />
+		<Unit filename="src/firework_renderer.cpp" />
 		<Unit filename="src/geometry.cpp" />
 		<Unit filename="src/image.cpp" />
 		<Unit filename="src/main.cpp" />
+		<Unit filename="src/particle.cpp" />
+		<Unit filename="src/renderer.cpp" />
 		<Unit filename="src/shader.cpp" />
 		<Unit filename="src/transforms.cpp" />
 		<Unit filename="src/utils.cpp" />

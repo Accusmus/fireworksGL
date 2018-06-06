@@ -10,6 +10,17 @@ firework_manager::~firework_manager()
     //dtor
 }
 
+void firework_manager::initRenderer(std::vector<glm::vec4> data, std::vector<glm::ivec3> ind, glm::mat4 viewMat){
+    renderer = firework_renderer();
+    renderer.setUpProgram("./shader/colour.vert.glsl",
+								 NULL, NULL, NULL,
+								 "./shader/colour.frag.glsl");
+    renderer.initBuffers();
+    renderer.setViewMatrix(viewMat);
+    renderer.setBufferObjData(data, ind);
+    renderer.setProjectionMatrix();
+}
+
 void firework_manager::update(){
     std::vector<int> deadFireworks;
     for(size_t i = 0; i < fireworks.size(); i++){
@@ -89,4 +100,15 @@ glm::vec3 firework_manager::createRandomColour(){
     b = (rand() % 100 + 1) * 0.01f;
 
     return glm::vec3(r, g, b);
+}
+
+void firework_manager::render(int id, int size, float modelMat[16]){
+    renderer.setModelMatrix(modelMat);
+    glm::vec3 fwCol = getFireworkColour(id);
+    renderer.setColour(fwCol);
+    renderer.renderObj();
+}
+
+void firework_manager::deleteRenderObj(){
+    renderer.deleteObjects();
 }

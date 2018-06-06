@@ -1,11 +1,10 @@
-#ifndef FIREWORK_H
-#define FIREWORK_H
+#ifndef PARTICLE_H
+#define PARTICLE_H
 
 // System Headers
 #include <iostream>
 #include <vector>
 #include <glm/glm.hpp>
-#include "particle.h"
 // OpenGL Headers
 #if defined(_WIN32)
 	#include <GL/glew.h>
@@ -41,18 +40,36 @@
     #include <GLFW/glfw3.h>
 #endif
 
-
-class firework: public particle
+class particle
 {
     public:
-        firework();
-        virtual ~firework();
+        particle();
+        virtual ~particle();
 
-        void update();
+        void setPosition(glm::vec3 pos);
+        void setAcceleration(glm::vec3 acc);
+        void setColour(glm::vec3 col);
+        void setSize(float s);
+
+        glm::vec3 getPosition();
+        glm::vec3 getColour();
+        float getSize();
+        bool isAlive();
+
+        virtual void update() = 0;
 
     protected:
+        glm::vec3 position;
+        glm::vec3 acceleration;
+        glm::vec3 velocity;
+        glm::vec3 colour;
 
+        glm::vec3 gravity;
+
+        float size;
+
+        bool alive;
     private:
 };
 
-#endif // FIREWORK_H
+#endif // PARTICLE_H

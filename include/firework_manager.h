@@ -41,7 +41,7 @@
 #endif
 
 #include "firework.h"
-
+#include "firework_renderer.h"
 
 
 class firework_manager
@@ -49,6 +49,8 @@ class firework_manager
     public:
         firework_manager();
         virtual ~firework_manager();
+
+        void initRenderer(std::vector<glm::vec4> data, std::vector<glm::ivec3> ind, glm::mat4 viewMat);
 
         void update();
         void createFirework(glm::vec3 pos, glm::vec3 acc, float size);
@@ -61,10 +63,14 @@ class firework_manager
         float getFireworkSize(int id);
         void setFireworkSize(int id, float s);
 
+        void render(int id, int size, float modelMat[16]);
+        void deleteRenderObj();
+
     protected:
 
     private:
         std::vector<firework> fireworks;
+        firework_renderer renderer;
 
         glm::vec3 createRandomColour();
 };

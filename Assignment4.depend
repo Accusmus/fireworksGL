@@ -94,7 +94,7 @@
 	<intrin.h>
 	<arm_neon.h>
 
-1528194416 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/main.cpp
+1528244327 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/main.cpp
 	<iostream>
 	<fstream>
 	<cmath>
@@ -125,6 +125,7 @@
 	"camera.h"
 	"transforms.h"
 	"firework_manager.h"
+	"firework_renderer.h"
 
 1527558588 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/shader.h
 	<iostream>
@@ -196,10 +197,57 @@
 	<GL/glut.h>
 	<GLFW/glfw3.h>
 
-1528194274 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework.cpp
+1528239064 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework.cpp
 	"firework.h"
 
-1528193855 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework.h
+1528239129 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework.h
+	<iostream>
+	<vector>
+	<glm/glm.hpp>
+	"particle.h"
+	<GL/glew.h>
+	<GL/eglew.h>
+	<GL/osmesa.h>
+	<GL/wglew.h>
+	<GL/glxew.h>
+	<GLFW/glfw3.h>
+	<GLFW/glfw3.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl3ext.h>
+	<OpenGL/gl3.h>
+	<GL/glew.h>
+	<GL/glut.h>
+	<GLFW/glfw3.h>
+	<GL/glew.h>
+	<GL/glut.h>
+	<GLFW/glfw3.h>
+
+1528244991 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework_manager.cpp
+	"firework_manager.h"
+
+1528244557 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework_manager.h
+	<iostream>
+	<vector>
+	<GL/glew.h>
+	<GL/eglew.h>
+	<GL/osmesa.h>
+	<GL/wglew.h>
+	<GL/glxew.h>
+	<GLFW/glfw3.h>
+	<GLFW/glfw3.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl3ext.h>
+	<OpenGL/gl3.h>
+	<GL/glew.h>
+	<GL/glut.h>
+	<GLFW/glfw3.h>
+	<GL/glew.h>
+	<GL/glut.h>
+	<GLFW/glfw3.h>
+	"firework.h"
+	"firework_renderer.h"
+
+1528238932 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/particle.h
 	<iostream>
 	<vector>
 	<glm/glm.hpp>
@@ -220,12 +268,16 @@
 	<GL/glut.h>
 	<GLFW/glfw3.h>
 
-1528194715 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework_manager.cpp
-	"firework_manager.h"
+1528239046 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/particle.cpp
+	"particle.h"
 
-1528194692 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework_manager.h
+1528244646 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/renderer.cpp
+	"renderer.h"
+
+1528244701 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/renderer.h
 	<iostream>
 	<vector>
+	<glm/glm.hpp>
 	<GL/glew.h>
 	<GL/eglew.h>
 	<GL/osmesa.h>
@@ -242,5 +294,36 @@
 	<GL/glew.h>
 	<GL/glut.h>
 	<GLFW/glfw3.h>
-	"firework.h"
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	"shader.h"
+
+1528245039 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework_renderer.cpp
+	"firework_renderer.h"
+
+1528242409 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework_renderer.h
+	<iostream>
+	<vector>
+	<glm/glm.hpp>
+	<GL/glew.h>
+	<GL/eglew.h>
+	<GL/osmesa.h>
+	<GL/wglew.h>
+	<GL/glxew.h>
+	<GLFW/glfw3.h>
+	<GLFW/glfw3.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl3ext.h>
+	<OpenGL/gl3.h>
+	<GL/glew.h>
+	<GL/glut.h>
+	<GLFW/glfw3.h>
+	<GL/glew.h>
+	<GL/glut.h>
+	<GLFW/glfw3.h>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	"renderer.h"
 
