@@ -17,7 +17,7 @@ void explosion_particle::update(){
     acceleration = glm::vec3(0.0f, 0.0f, 0.0f);
     position += velocity;
 
-    if(velocity.y <= -0.05f){
+    if(velocity.y <= -0.2f){
         alive = false;
     }
 }

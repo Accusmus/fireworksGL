@@ -26,9 +26,11 @@ void firework_manager::update(){
         }
     }
 
-    for(auto a = deadFireworks.begin(); a != deadFireworks.end(); a++){
-        fireworks.erase(fireworks.begin() + *a);
-        createNumExplosionParticles(10, 0.5);
+    for(int a = 0; a < deadFireworks.size(); a++){
+        glm::vec3 pos = fireworks.at(a).getPosition();
+        glm::vec3 col = fireworks.at(a).getColour();
+        createNumExplosionParticles(25, 0.15, pos, col);
+        fireworks.erase(fireworks.begin() + a);
     }
 
     for(auto a = deadExpParticle.begin(); a != deadExpParticle.end(); a++){
@@ -70,15 +72,15 @@ void firework_manager::createNumFireworks(int num, float size){
     }
 }
 
-void firework_manager::createExplosionParticle(float size){
+void firework_manager::createExplosionParticle(float size, glm::vec3 pos){
     float xAcc, yAcc, zAcc;
-    glm::vec3 pos, speed;
+    glm::vec3 speed;
 
-    xAcc = (rand() % 60 - 30)* 0.002;
-    yAcc = (rand() % 20 + 10) * 0.015f;
+    xAcc = (rand() % 60 - 30)* 0.006;
+    yAcc = (rand() % 20 - 10) * 0.02f;
     zAcc = (rand() % 60 - 30)* 0.002;
 
-    pos = glm::vec3(20.0f,-20.0f,-30.0f);
+    //pos = glm::vec3(20.0f,-20.0f,-30.0f);
     speed = glm::vec3(xAcc,yAcc,zAcc);
 
     explosion_particle exp = explosion_particle();
@@ -88,10 +90,9 @@ void firework_manager::createExplosionParticle(float size){
     expParticle.push_back(exp);
 }
 
-void firework_manager::createNumExplosionParticles(int num, float size){
+void firework_manager::createNumExplosionParticles(int num, float size, glm::vec3 pos, glm::vec3 col){
     for(int i = 0; i < num; i++){
-        createExplosionParticle(size);
-        glm::vec3 col = glm::vec3(1.0, 1.0, 1.0);
+        createExplosionParticle(size, pos);
         expParticle.back().setColour(col);
     }
 }

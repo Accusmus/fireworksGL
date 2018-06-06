@@ -292,8 +292,8 @@ int main() {
 
 void update(firework_manager &fManager, int update_num){
     if(update_num == 1 || update_num == 15 || update_num == 30 || update_num == 45){
-        float s = (rand() % 10 + 1) * 0.1f;
-        fManager.createNumFireworks(10, s);
+        float s = (rand() % 5 + 3) * 0.05f;
+        fManager.createNumFireworks(20, s);
     }
     fManager.update();
 }
