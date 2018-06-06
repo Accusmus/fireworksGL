@@ -53,19 +53,23 @@ class firework_manager
         virtual ~firework_manager();
 
         void update();
-        void createFirework(glm::vec3 pos, glm::vec3 acc, float size);
-        void createFirework(float size);
-        void createNumFireworks(int num, float size);
 
-        void createExplosionParticle(float size, glm::vec3 pos);
+        //Methods for creating fireworks
+        void createFirework(float size, glm::vec3 pos);
+        void createNumFireworks(int num, float size, glm::vec3 pos);
+
+        //Methods for creating explosion particles
+        void createExplosionParticle(float sz, glm::vec3 pos);
         void createNumExplosionParticles(int num, float size, glm::vec3 pos, glm::vec3 col);
 
+        //Getter and Setter Methods
         int getNumOfFireworks();
         glm::vec3 getFireworkPos(int id);
         glm::vec3 getFireworkColour(int id);
         float getFireworkSize(int id);
         void setFireworkSize(int id, float s);
 
+        //Medthods for rendering
         void initRenderer();
         void render(glm::mat4 viewMat);
         void deleteRenderObj();
@@ -73,10 +77,12 @@ class firework_manager
     protected:
 
     private:
+        //Vectors for holding all of the objects
         std::vector<firework> fireworks;
         std::vector<explosion_particle> expParticle;
+        //Renderer object
         firework_renderer renderer;
-
+        //private methods
         glm::vec3 createRandomColour();
 };
 

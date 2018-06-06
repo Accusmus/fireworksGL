@@ -48,6 +48,8 @@ class explosion_particle: public particle
         explosion_particle();
         virtual ~explosion_particle();
 
+        void initExplosionParticle(float sz, glm::vec3 pos);
+
         void update();
 
     protected:

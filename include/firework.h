@@ -48,6 +48,8 @@ class firework: public particle
         firework();
         virtual ~firework();
 
+        void initFirework(float sz, glm::vec3 initPos);
+
         void update();
 
     protected:

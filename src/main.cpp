@@ -293,7 +293,9 @@ int main() {
 void update(firework_manager &fManager, int update_num){
     if(update_num == 1 || update_num == 15 || update_num == 30 || update_num == 45){
         float s = (rand() % 5 + 3) * 0.05f;
-        fManager.createNumFireworks(20, s);
+        glm::vec3 pos;
+        pos = glm::vec3(0.0f,-20.0f,-30.0f);
+        fManager.createNumFireworks(2, s, pos);
     }
     fManager.update();
 }
