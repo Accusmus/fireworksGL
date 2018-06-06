@@ -42,6 +42,8 @@
 
 #include "firework.h"
 #include "firework_renderer.h"
+#include "transforms.h"
+#include "explosion_particle.h"
 
 
 class firework_manager
@@ -55,6 +57,9 @@ class firework_manager
         void createFirework(float size);
         void createNumFireworks(int num, float size);
 
+        void createExplosionParticle(float size);
+        void createNumExplosionParticles(int num, float size);
+
         int getNumOfFireworks();
         glm::vec3 getFireworkPos(int id);
         glm::vec3 getFireworkColour(int id);
@@ -62,13 +67,14 @@ class firework_manager
         void setFireworkSize(int id, float s);
 
         void initRenderer();
-        void render(int id, float modelMat[16], glm::mat4 viewMat);
+        void render(glm::mat4 viewMat);
         void deleteRenderObj();
 
     protected:
 
     private:
         std::vector<firework> fireworks;
+        std::vector<explosion_particle> expParticle;
         firework_renderer renderer;
 
         glm::vec3 createRandomColour();

@@ -49,7 +49,6 @@
 #include "utils.h"
 #include "image.h"
 #include "camera.h"
-#include "transforms.h"
 #include "firework_manager.h"
 
 // Camera
@@ -266,20 +265,8 @@ int main() {
 		// Update Camera
 		camera->update(dt);
 
-        //render loops for all Firework objects
-		for(size_t i = 0; i < fManager.getNumOfFireworks(); i++){
-            float tr[16], sc[16], res[16];
-            float fwSize = fManager.getFireworkSize(i);
-            glm::vec3 fwPos = fManager.getFireworkPos(i);
-
-            //calculate transform
-            translate(fwPos.x, fwPos.y, fwPos.z, tr);
-            scale(fwSize, fwSize, fwSize, sc);
-            multiply44(tr, sc, res);
-
-            //render each object
-            fManager.render(i, res, camera->getViewMatrix());
-		}
+        //draw all of the fireworks to the screen
+		fManager.render(camera->getViewMatrix());
 
 		// Unbind Vertex Array Object
 		glBindVertexArray(0);

@@ -41,6 +41,7 @@
 			<Add library="glfw" />
 		</Linker>
 		<Unit filename="include/camera.h" />
+		<Unit filename="include/explosion_particle.h" />
 		<Unit filename="include/firework.h" />
 		<Unit filename="include/firework_manager.h" />
 		<Unit filename="include/firework_renderer.h" />
@@ -55,6 +56,7 @@
 		<Unit filename="shader/colour.frag.glsl" />
 		<Unit filename="shader/colour.vert.glsl" />
 		<Unit filename="src/camera.cpp" />
+		<Unit filename="src/explosion_particle.cpp" />
 		<Unit filename="src/firework.cpp" />
 		<Unit filename="src/firework_manager.cpp" />
 		<Unit filename="src/firework_renderer.cpp" />

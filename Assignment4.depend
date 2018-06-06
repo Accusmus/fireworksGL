@@ -94,7 +94,7 @@
 	<intrin.h>
 	<arm_neon.h>
 
-1528256229 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/main.cpp
+1528263760 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/main.cpp
 	<iostream>
 	<fstream>
 	<cmath>
@@ -121,7 +121,6 @@
 	"utils.h"
 	"image.h"
 	"camera.h"
-	"transforms.h"
 	"firework_manager.h"
 
 1527558588 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/shader.h
@@ -219,10 +218,10 @@
 	<GL/glut.h>
 	<GLFW/glfw3.h>
 
-1528256160 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework_manager.cpp
+1528263703 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework_manager.cpp
 	"firework_manager.h"
 
-1528253859 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework_manager.h
+1528266269 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework_manager.h
 	<iostream>
 	<vector>
 	<GL/glew.h>
@@ -243,6 +242,8 @@
 	<GLFW/glfw3.h>
 	"firework.h"
 	"firework_renderer.h"
+	"transforms.h"
+	"explosion_particle.h"
 
 1528238932 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/particle.h
 	<iostream>
@@ -295,7 +296,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 
-1528256083 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework_renderer.cpp
+1528256332 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework_renderer.cpp
 	"firework_renderer.h"
 
 1528255911 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework_renderer.h
@@ -324,4 +325,27 @@
 	"renderer.h"
 	"shader.h"
 	"geometry.h"
+
+1528265185 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/explosion_particle.cpp
+	"explosion_particle.h"
+
+1528265352 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/explosion_particle.h
+	<iostream>
+	<GL/glew.h>
+	<GL/eglew.h>
+	<GL/osmesa.h>
+	<GL/wglew.h>
+	<GL/glxew.h>
+	<GLFW/glfw3.h>
+	<GLFW/glfw3.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl3ext.h>
+	<OpenGL/gl3.h>
+	<GL/glew.h>
+	<GL/glut.h>
+	<GLFW/glfw3.h>
+	<GL/glew.h>
+	<GL/glut.h>
+	<GLFW/glfw3.h>
+	"particle.h"
 
