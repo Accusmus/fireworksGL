@@ -50,8 +50,6 @@ class firework_manager
         firework_manager();
         virtual ~firework_manager();
 
-        void initRenderer(std::vector<glm::vec4> data, std::vector<glm::ivec3> ind, glm::mat4 viewMat);
-
         void update();
         void createFirework(glm::vec3 pos, glm::vec3 acc, float size);
         void createFirework(float size);
@@ -63,7 +61,8 @@ class firework_manager
         float getFireworkSize(int id);
         void setFireworkSize(int id, float s);
 
-        void render(int id, int size, float modelMat[16], glm::mat4 viewMat);
+        void initRenderer();
+        void render(int id, float modelMat[16], glm::mat4 viewMat);
         void deleteRenderObj();
 
     protected:

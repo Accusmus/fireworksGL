@@ -46,6 +46,8 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "renderer.h"
+#include "shader.h"
+#include "geometry.h"
 
 
 class firework_renderer: public renderer
@@ -54,13 +56,15 @@ class firework_renderer: public renderer
         firework_renderer();
         virtual ~firework_renderer();
 
-        void renderObj();
+        void renderObj(glm::vec3 colour, float modelMat[16], glm::mat4 viewMat);
+        void setUpProgram(const char *vert_file, const char *ctrl_file, const char *eval_file, const char *geom_file, const char *frag_file);
 
-        void setBufferObjData(std::vector<glm::vec4> data, std::vector<glm::ivec3> indexes);
+        void createFireworkObject(float size, int horRes, int vertRes);
 
     protected:
 
     private:
+        void initializeRenderer();
 };
 
 #endif // FIREWORK_RENDERER_H

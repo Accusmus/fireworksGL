@@ -2,17 +2,13 @@
 
 renderer::renderer()
 {
-    //ctor
+    //Set the perspective matrix this will be consistant throughout application
 	projectionMatrix = glm::perspective(glm::radians(67.0f), 1.0f, 0.01f, 300.0f);
 }
 
 renderer::~renderer()
 {
     //dtor
-}
-
-void renderer::setUpProgram(const char *vert_file, const char *ctrl_file, const char *eval_file, const char *geom_file, const char *frag_file){
-    program = loadProgram(vert_file, ctrl_file, eval_file, geom_file, frag_file);
 }
 
 void renderer::initBuffers(){

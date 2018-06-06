@@ -58,7 +58,7 @@ void createGround(std::vector<glm::vec4> &buffer, std::vector<glm::ivec3> &index
 
 // --------------------------------------------------------------------------------
 // Create Sphere with Positions and Normals
-void createSphereData(std::vector<glm::vec4> &buffer, std::vector<glm::ivec3> &indexes, float r, int sub1, int sub2, glm::vec3 colour);
+void createSphereData(std::vector<glm::vec4> &buffer, std::vector<glm::ivec3> &indexes, float r, int sub1, int sub2);
 
 // --------------------------------------------------------------------------------
 #endif // GEOMETRY_H

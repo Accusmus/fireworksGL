@@ -46,14 +46,11 @@
 #include <glm/gtc/type_ptr.hpp>
 
 // Project Headers
-#include "shader.h"
 #include "utils.h"
-#include "geometry.h"
 #include "image.h"
 #include "camera.h"
 #include "transforms.h"
 #include "firework_manager.h"
-#include "firework_renderer.h"
 
 // Camera
 Camera *camera;
@@ -212,40 +209,10 @@ int main() {
 
 	//create Firework Manager to manage all of the fireworks and how they are rendered
     firework_manager fManager = firework_manager();
+	fManager.initRenderer();
 
 
-	// Vertex and Index buffers (host)
-	std::vector<glm::vec4> buffer;
-	std::vector<glm::ivec3> indexes;
 
-	// Create Ground
-	//createBlade(buffer, indexes);
-	//createGround(buffer, indexes);
-	//createCube(buffer, indexes);
-	glm::vec3 colour(1.0, 0.0, 0.0);
-	createSphereData(buffer, indexes, 0.3, 5, 5, colour);
-
-	//fireworkRenderer.setBufferObjData(buffer, indexes);
-	fManager.initRenderer(buffer, indexes, camera->getViewMatrix());
-
-//	// Load Vertex Data
-//	glBufferData(GL_ARRAY_BUFFER, buffer.size() * sizeof(glm::vec4), buffer.data(), GL_STATIC_DRAW);
-//
-//	// Load Element Data
-//	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexes.size() * sizeof(glm::ivec3), indexes.data(), GL_STATIC_DRAW);
-
-	// ----------------------------------------
-	// Projection Matrix
-	// ----------------------------------------
-//	glm::mat4 projectionMatrix;
-//
-//	// Calculate Perspective Projection
-//	projectionMatrix = glm::perspective(glm::radians(67.0f), 1.0f, 0.01f, 300.0f);
-
-	//fireworkRenderer.setProjectionMatrix(projectionMatrix);
-
-	// Copy Projection Matrix to Shader
-	//glUniformMatrix4fv(glGetUniformLocation(program, "u_Projection"), 1, GL_FALSE, glm::value_ptr(projectionMatrix));
 	// ----------------------------------------
 	// Main Render loop
 	// ----------------------------------------
@@ -282,9 +249,8 @@ int main() {
             update_count++;
             updates = 0.0f;
 
+            //update the Firework manager
             update(fManager, update_count);
-
-            fManager.update();
 		}
 
 
@@ -294,39 +260,25 @@ int main() {
 			std::cout << "fps: " << frame_count << std::endl;
 			frame_count = 0;
 			update_count = 0;
-
 		}
 
 		// ----------------------------------------
 		// Update Camera
 		camera->update(dt);
 
-		// Use Program
-		//glUseProgram(program);
-
-
-		// Bind Vertex Array Object
-		//glBindVertexArray(vao);
-
+        //render loops for all Firework objects
 		for(size_t i = 0; i < fManager.getNumOfFireworks(); i++){
             float tr[16], sc[16], res[16];
             float fwSize = fManager.getFireworkSize(i);
             glm::vec3 fwPos = fManager.getFireworkPos(i);
 
+            //calculate transform
             translate(fwPos.x, fwPos.y, fwPos.z, tr);
             scale(fwSize, fwSize, fwSize, sc);
             multiply44(tr, sc, res);
 
-            //fireworkRenderer.setModelMatrix(res);
-
-            //glUniformMatrix4fv(glGetUniformLocation(program, "u_Model"), 1, GL_FALSE, res);
-
-            //glm::vec3 fwCol = fManager.getFireworkColour(i);
-            //glUniform3f(glGetUniformLocation(program, "u_Colour"), fwCol.x, fwCol.y, fwCol.z);
-            fManager.render(i,indexes.size()*3, res, camera->getViewMatrix());
-            // Draw Elements (Triangles)
-//            glDrawElements(GL_TRIANGLES, indexes.size()*3, GL_UNSIGNED_INT, NULL);
-            //fManager.render(indexes.size()*3);
+            //render each object
+            fManager.render(i, res, camera->getViewMatrix());
 		}
 
 		// Unbind Vertex Array Object
@@ -339,18 +291,9 @@ int main() {
 		// Poll window events
 		glfwPollEvents();
 	}
+	//clean up vertex objects
 	fManager.deleteRenderObj();
-	//fireworkRenderer.deleteObjects();
-//	// Delete VAO, VBO & EBO
-//	glDeleteVertexArrays(1, &vao);
-//	glDeleteBuffers(1, &vbo);
-//	glDeleteBuffers(1, &ebo);
-//
-//	// Delete Program
-//	glDeleteProgram(program);
 
-	// Stop receiving events for the window and free resources; this must be
-	// called from the main thread and should not be invoked from a callback
 	glfwDestroyWindow(window);
 
 	// Terminate GLFW
@@ -359,9 +302,10 @@ int main() {
 	return 0;
 }
 
+
 void update(firework_manager &fManager, int update_num){
     if(update_num == 1 || update_num == 15 || update_num == 30 || update_num == 45){
-        float s = (rand() % 200 + 1) * 0.01f;
+        float s = (rand() % 10 + 1) * 0.1f;
         fManager.createNumFireworks(10, s);
     }
     fManager.update();

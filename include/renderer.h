@@ -45,7 +45,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "shader.h"
 
 
 class renderer
@@ -54,9 +53,9 @@ class renderer
         renderer();
         virtual ~renderer();
 
-        virtual void renderObj() = 0;
-
-        void setUpProgram(const char *vert_file, const char *ctrl_file, const char *eval_file, const char *geom_file, const char *frag_file);
+        virtual void renderObj(glm::vec3 colour, float modelMat[16], glm::mat4 viewMat) = 0;
+        virtual void setUpProgram(const char *vert_file, const char *ctrl_file, const char *eval_file, const char *geom_file, const char *frag_file) = 0;
+        virtual void initializeRenderer() = 0;
         void initBuffers();
         void deleteObjects();
 

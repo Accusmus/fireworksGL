@@ -2,23 +2,12 @@
 
 firework_manager::firework_manager()
 {
-    //ctor
+
 }
 
 firework_manager::~firework_manager()
 {
-    //dtor
-}
 
-void firework_manager::initRenderer(std::vector<glm::vec4> data, std::vector<glm::ivec3> ind, glm::mat4 viewMat){
-    renderer = firework_renderer();
-    renderer.setUpProgram("./shader/colour.vert.glsl",
-								 NULL, NULL, NULL,
-								 "./shader/colour.frag.glsl");
-    renderer.initBuffers();
-    renderer.setViewMatrix(viewMat);
-    renderer.setBufferObjData(data, ind);
-    renderer.setProjectionMatrix();
 }
 
 void firework_manager::update(){
@@ -58,7 +47,7 @@ void firework_manager::createFirework(float size){
     firewk.setSize(size);
     firewk.setPosition(pos);
     firewk.setAcceleration(speed);
-    firewk.setSize(1.0f);
+    firewk.setSize(size);
     fireworks.push_back(firewk);
 }
 
@@ -69,6 +58,10 @@ void firework_manager::createNumFireworks(int num, float size){
         fireworks.back().setColour(col);
     }
 }
+
+//===========================================
+//getters and setters
+//===========================================
 
 int firework_manager::getNumOfFireworks(){
     return fireworks.size();
@@ -90,7 +83,9 @@ void firework_manager::setFireworkSize(int id, float s){
     fireworks[id].setSize(s);
 }
 
+//======================================================
 //private funcions
+//======================================================
 
 glm::vec3 firework_manager::createRandomColour(){
     float r, g, b;
@@ -102,12 +97,18 @@ glm::vec3 firework_manager::createRandomColour(){
     return glm::vec3(r, g, b);
 }
 
-void firework_manager::render(int id, int size, float modelMat[16], glm::mat4 viewMat){
-    renderer.setModelMatrix(modelMat);
-    renderer.setViewMatrix(viewMat);
+//====================================================
+//Renderer Functions
+//====================================================
+
+void firework_manager::initRenderer(){
+    renderer = firework_renderer();
+}
+
+void firework_manager::render(int id, float modelMat[16], glm::mat4 viewMat){
     glm::vec3 fwCol = getFireworkColour(id);
-    renderer.setColour(fwCol);
-    renderer.renderObj();
+
+    renderer.renderObj(fwCol, modelMat, viewMat);
 }
 
 void firework_manager::deleteRenderObj(){
