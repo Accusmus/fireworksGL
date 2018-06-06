@@ -63,7 +63,7 @@ class firework_manager
         float getFireworkSize(int id);
         void setFireworkSize(int id, float s);
 
-        void render(int id, int size, float modelMat[16]);
+        void render(int id, int size, float modelMat[16], glm::mat4 viewMat);
         void deleteRenderObj();
 
     protected:

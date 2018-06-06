@@ -210,62 +210,7 @@ int main() {
 	// ----------------------------------------
 	camera = new GimbalFreeLookCamera(window, glm::vec3(0.0f, 0.2f, 1.4f));
 
-	// ----------------------------------------
-	// Create GLSL Program and VAOs, VBOs
-	// ----------------------------------------
-
-
-	//firework_renderer fireworkRenderer = firework_renderer();
-
-//	fireworkRenderer.setUpProgram("./shader/colour.vert.glsl",
-//								 NULL, NULL, NULL,
-//								 "./shader/colour.frag.glsl");
-
-//	// Load GLSL Program
-//	GLuint program = loadProgram("./shader/colour.vert.glsl",
-//								 NULL, NULL, NULL,
-//								 "./shader/colour.frag.glsl");
-
-    //fireworkRenderer.initBuffers();
-    //fireworkRenderer.setViewMatrix(camera->getViewMatrix());
-
-//	// Use Program
-//	glUseProgram(program);
-//
-//	// ----------------------------------------
-//	// Vertex Array Objects
-//	// ----------------------------------------
-//	// Vertex Array Objects (VAO)
-//	GLuint vao;
-//
-//	// Vertex Buffer Objects (VBO)
-//	GLuint vbo;
-//
-//	// Element Buffer Objects (EBO)
-//	GLuint ebo;
-//
-//	// Create VAO, VBO & EBO
-//	glGenVertexArrays(1, &vao);
-//	glGenBuffers(1, &vbo);
-//	glGenBuffers(1, &ebo);
-//
-//	// Copy View Matrix to Shader
-//	glUniformMatrix4fv(glGetUniformLocation(program, "u_View"),  1, GL_FALSE, glm::value_ptr(camera->getViewMatrix()));
-//
-//	glBindVertexArray(vao);
-//	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-//
-//    	// Set Vertex Attribute Pointers
-//	glVertexAttribPointer(glGetAttribLocation(program, "vert_Position"), 4, GL_FLOAT, GL_FALSE, 12 * sizeof(GLfloat), NULL);
-//	glVertexAttribPointer(glGetAttribLocation(program, "vert_Normal"),   4, GL_FLOAT, GL_FALSE, 12 * sizeof(GLfloat), (GLvoid*)(4*sizeof(float)));
-//	glVertexAttribPointer(glGetAttribLocation(program, "vert_Colour"),   4, GL_FLOAT, GL_FALSE, 12 * sizeof(GLfloat), (GLvoid*)(8*sizeof(float)));
-//
-//	// Enable Vertex Attribute Arrays
-//	glEnableVertexAttribArray(glGetAttribLocation(program, "vert_Position"));
-//	glEnableVertexAttribArray(glGetAttribLocation(program, "vert_Normal"));
-//	glEnableVertexAttribArray(glGetAttribLocation(program, "vert_Colour"));
-
+	//create Firework Manager to manage all of the fireworks and how they are rendered
     firework_manager fManager = firework_manager();
 
 
@@ -378,7 +323,7 @@ int main() {
 
             //glm::vec3 fwCol = fManager.getFireworkColour(i);
             //glUniform3f(glGetUniformLocation(program, "u_Colour"), fwCol.x, fwCol.y, fwCol.z);
-            fManager.render(i,indexes.size()*3, res);
+            fManager.render(i,indexes.size()*3, res, camera->getViewMatrix());
             // Draw Elements (Triangles)
 //            glDrawElements(GL_TRIANGLES, indexes.size()*3, GL_UNSIGNED_INT, NULL);
             //fManager.render(indexes.size()*3);

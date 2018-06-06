@@ -102,8 +102,9 @@ glm::vec3 firework_manager::createRandomColour(){
     return glm::vec3(r, g, b);
 }
 
-void firework_manager::render(int id, int size, float modelMat[16]){
+void firework_manager::render(int id, int size, float modelMat[16], glm::mat4 viewMat){
     renderer.setModelMatrix(modelMat);
+    renderer.setViewMatrix(viewMat);
     glm::vec3 fwCol = getFireworkColour(id);
     renderer.setColour(fwCol);
     renderer.renderObj();
