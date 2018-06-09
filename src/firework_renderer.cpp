@@ -13,17 +13,10 @@ firework_renderer::~firework_renderer()
 
 void firework_renderer::initializeRenderer(){
     //Load the shader programs
-    setUpProgram("./shader/colour.vert.glsl",
-								 NULL, NULL, NULL,
-								 "./shader/colour.frag.glsl");
-
+    program = loadProgram("./shader/colour.vert.glsl", NULL, NULL, NULL, "./shader/colour.frag.glsl");
     initBuffers();
     createFireworkObject(1.0f, 10, 10);
     setProjectionMatrix();
-}
-
-void firework_renderer::setUpProgram(const char *vert_file, const char *ctrl_file, const char *eval_file, const char *geom_file, const char *frag_file){
-    program = loadProgram(vert_file, ctrl_file, eval_file, geom_file, frag_file);
 }
 
 

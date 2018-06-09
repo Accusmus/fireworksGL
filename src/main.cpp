@@ -50,7 +50,7 @@
 #include "image.h"
 #include "camera.h"
 #include "firework_manager.h"
-
+#include "surface_renderer.h"
 // Camera
 Camera *camera;
 
@@ -186,8 +186,8 @@ int main() {
 	glDepthFunc(GL_LEQUAL);
 
 	glFrontFace(GL_CCW);
-	//glEnable(GL_CULL_FACE);
-	glCullFace(GL_FRONT);
+	glEnable(GL_CULL_FACE);
+	//glCullFace(GL_FRONT);
 
 	// Get Maximum Anistropic level
 	GLfloat maxAnistropy = 0.0f;
@@ -208,9 +208,8 @@ int main() {
 
 	//create Firework Manager to manage all of the fireworks and how they are rendered
     firework_manager fManager = firework_manager();
+    surface_renderer sRenderer = surface_renderer();
 	fManager.initRenderer();
-
-
 
 	// ----------------------------------------
 	// Main Render loop
@@ -267,9 +266,11 @@ int main() {
 
         //draw all of the fireworks to the screen
 		fManager.render(camera->getViewMatrix());
-
-		// Unbind Vertex Array Object
-		glBindVertexArray(0);
+		float translation[16], sc[16], res[16];
+		translate(-0.0, -20, -30.0, translation);
+		scale(300, 300, 300, sc);
+		multiply44(translation, sc, res);
+		sRenderer.renderObj(glm::vec3(0.0f, 0.3f, 0.0f), res, camera->getViewMatrix());
 
 		// ----------------------------------------
 		// Swap the back and front buffers
@@ -295,7 +296,7 @@ void update(firework_manager &fManager, int update_num){
         float s = (rand() % 5 + 3) * 0.05f;
         glm::vec3 pos;
         pos = glm::vec3(0.0f,-20.0f,-30.0f);
-        fManager.createNumFireworks(2, s, pos);
+        fManager.createNumFireworks(10, s, pos);
     }
     fManager.update();
 }

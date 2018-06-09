@@ -1,5 +1,5 @@
-#ifndef FIREWORK_RENDERER_H
-#define FIREWORK_RENDERER_H
+#ifndef SURFACE_RENDERER_H
+#define SURFACE_RENDERER_H
 
 // System Headers
 #include <iostream>
@@ -46,23 +46,27 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "renderer.h"
-#include "shader.h"
 #include "geometry.h"
+#include "shader.h"
 
 
-class firework_renderer: public renderer
+class surface_renderer: public renderer
 {
-    public:
-        firework_renderer();
-        virtual ~firework_renderer();
+	public:
+		surface_renderer();
+		virtual ~surface_renderer();
 
-        void renderObj(glm::vec3 colour, float modelMat[16], glm::mat4 viewMat);
+		void renderObj(glm::vec3 colour, float modelMat[16], glm::mat4 viewMat);
 
-    protected:
 
-    private:
-        void initializeRenderer();
-         void createFireworkObject(float size, int horRes, int vertRes);
+	protected:
+
+	private:
+		void initializeRenderer();
+
+		void createSurfaceObj();
+
+
 };
 
-#endif // FIREWORK_RENDERER_H
+#endif // SURFACE_RENDERER_H

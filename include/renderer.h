@@ -54,8 +54,6 @@ class renderer
         virtual ~renderer();
 
         virtual void renderObj(glm::vec3 colour, float modelMat[16], glm::mat4 viewMat) = 0;
-        virtual void setUpProgram(const char *vert_file, const char *ctrl_file, const char *eval_file, const char *geom_file, const char *frag_file) = 0;
-        virtual void initializeRenderer() = 0;
         void initBuffers();
         void deleteObjects();
 
@@ -75,6 +73,8 @@ class renderer
 
     private:
         glm::mat4 projectionMatrix;
+
+        virtual void initializeRenderer() = 0;
 };
 
 #endif // RENDERER_H

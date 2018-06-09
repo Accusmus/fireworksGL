@@ -30,7 +30,7 @@ void firework_manager::update(){
         }
     }
 
-    for(int a = 0; a < deadFireworks.size(); a++){
+    for(size_t a = 0; a < deadFireworks.size(); a++){
         glm::vec3 pos = fireworks.at(a).getPosition();
         glm::vec3 col = fireworks.at(a).getColour();
         createNumExplosionParticles(25, 0.1, pos, col);

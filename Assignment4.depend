@@ -94,7 +94,7 @@
 	<intrin.h>
 	<arm_neon.h>
 
-1528321760 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/main.cpp
+1528507330 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/main.cpp
 	<iostream>
 	<fstream>
 	<cmath>
@@ -122,6 +122,7 @@
 	"image.h"
 	"camera.h"
 	"firework_manager.h"
+	"surface_renderer.h"
 
 1527558588 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/shader.h
 	<iostream>
@@ -218,7 +219,7 @@
 	<GL/glut.h>
 	<GLFW/glfw3.h>
 
-1528321732 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework_manager.cpp
+1528507414 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework_manager.cpp
 	"firework_manager.h"
 
 1528322091 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework_manager.h
@@ -272,7 +273,7 @@
 1528255137 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/renderer.cpp
 	"renderer.h"
 
-1528255560 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/renderer.h
+1528505011 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/renderer.h
 	<iostream>
 	<vector>
 	<glm/glm.hpp>
@@ -296,10 +297,10 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 
-1528256332 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework_renderer.cpp
+1528507517 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/firework_renderer.cpp
 	"firework_renderer.h"
 
-1528255911 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework_renderer.h
+1528505989 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/firework_renderer.h
 	<iostream>
 	<vector>
 	<glm/glm.hpp>
@@ -348,4 +349,34 @@
 	<GL/glut.h>
 	<GLFW/glfw3.h>
 	"particle.h"
+
+1528506087 /home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/include/surface_renderer.h
+	<iostream>
+	<vector>
+	<glm/glm.hpp>
+	<GL/glew.h>
+	<GL/eglew.h>
+	<GL/osmesa.h>
+	<GL/wglew.h>
+	<GL/glxew.h>
+	<GLFW/glfw3.h>
+	<GLFW/glfw3.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl3ext.h>
+	<OpenGL/gl3.h>
+	<GL/glew.h>
+	<GL/glut.h>
+	<GLFW/glfw3.h>
+	<GL/glew.h>
+	<GL/glut.h>
+	<GLFW/glfw3.h>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	"renderer.h"
+	"geometry.h"
+	"shader.h"
+
+1528506236 source:/home/matthew/Documents/Uni/Computer Graphics/Assignment 4/Assignment4/src/surface_renderer.cpp
+	"surface_renderer.h"
 
