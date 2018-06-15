@@ -10,14 +10,20 @@ surface_renderer::~surface_renderer()
 
 }
 
-void surface_renderer::renderObj(glm::vec3 colour, float modelMat[16], glm::mat4 viewMat){
+void surface_renderer::renderObj(glm::vec3 colour, float modelMat[16],glm::mat4 viewMat){
+    //create model transforms
+    float translation[16], sc[16], model[16];
+    translate(-0.0, 0.0, -30.0, translation);
+    scale(300, 300, 300, sc);
+    multiply44(translation, sc, model);
+
     //use the currently loaded shader program
     glUseProgram(program);
     //bind the vertex array object
     glBindVertexArray(vao);
 
     //set the model, view and colour Uniforms and send to the shader
-    setModelMatrix(modelMat);
+    setModelMatrix(model);
     setViewMatrix(viewMat);
     setColour(colour);
 

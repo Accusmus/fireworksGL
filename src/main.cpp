@@ -270,11 +270,7 @@ int main() {
 
         //draw all of the fireworks to the screen
 		fManager.render(camera->getViewMatrix());
-		float translation[16], sc[16], res[16];
-		translate(-0.0, 0.0, -30.0, translation);
-		scale(300, 300, 300, sc);
-		multiply44(translation, sc, res);
-		sRenderer.renderObj(glm::vec3(0.0f, 0.3f, 0.0f), res, camera->getViewMatrix());
+		sRenderer.renderObj(glm::vec3(0.0f, 0.3f, 0.0f), NULL, camera->getViewMatrix());
 
 		// ----------------------------------------
 		// Swap the back and front buffers
