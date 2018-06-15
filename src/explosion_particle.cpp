@@ -59,28 +59,30 @@ void explosion_particle::update(){
     timeOCreate = current;
     total += dt;
 
-    if(total >= 1.5f){
+    if(total > 1.5f){
         alive = false;
         total = 0.0f;
     }
+
+    setSize(getSize() - 0.001);
 }
 
 void explosion_particle::calculateFriction(){
     if(acceleration.x > 0.0){
-        friction.x = -0.17;
+        friction.x = -0.15;
     }else{
-        friction.x = 0.17;
+        friction.x = 0.15;
     }
 
     if(acceleration.y > 0.0){
-        friction.y = -0.17;
+        friction.y = -0.15;
     }else{
-        friction.y = 0.17;
+        friction.y = 0.15;
     }
 
     if(acceleration.z > 0.0){
-        friction.z = -0.17;
+        friction.z = -0.15;
     }else{
-        friction.z = 0.17;
+        friction.z = 0.15;
     }
 }

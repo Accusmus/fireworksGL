@@ -106,6 +106,10 @@ void firework_manager::setFireworkSize(int id, float s){
     fireworks[id].setSize(s);
 }
 
+int firework_manager::getNumOfExplosionParticles(){
+    return expParticle.size();
+}
+
 //======================================================
 //private methods
 //======================================================

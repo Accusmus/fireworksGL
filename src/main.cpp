@@ -227,7 +227,7 @@ int main() {
 		glfwMakeContextCurrent(window);
 
 		// Set clear (background) colour to black
-		glClearColor(0.0f, 0.3f, 0.5f, 0.0f);
+		glClearColor(0.0f, 0.2f, 0.4f, 0.0f);
 
 		// Clear Screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -260,6 +260,8 @@ int main() {
 			std::cout << "fps: " << frame_count << std::endl;
 			frame_count = 0;
 			update_count = 0;
+            std::cout << "number of fireworks:           " << fManager.getNumOfFireworks() << std::endl;
+            std::cout << "number of explosion particles: " << fManager.getNumOfExplosionParticles() << std::endl;
 		}
 
 		// ----------------------------------------
@@ -294,13 +296,13 @@ int main() {
 
 
 void update(firework_manager &fManager, int update_num){
-    if(update_num == 1){
+    //if(update_num == 1){
         float s = 0.1f;
         glm::vec3 pos, col;
         pos = glm::vec3(0.0f, 0.0f, -30.0f);
         col = glm::vec3(0.0f, 0.0f, 0.0f);
         fManager.createNumFireworks(1, s, pos, col);
-    }
+    //}
     fManager.update();
 }
 

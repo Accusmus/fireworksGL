@@ -70,6 +70,8 @@ class firework_manager
         float getFireworkSize(int id);
         void setFireworkSize(int id, float s);
 
+        int getNumOfExplosionParticles();
+
         //Medthods for rendering
         void initRenderer();
         void render(glm::mat4 viewMat);
