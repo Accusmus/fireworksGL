@@ -51,6 +51,10 @@
 #include "camera.h"
 #include "firework_manager.h"
 #include "surface_renderer.h"
+
+
+#define PI 3.141592654
+
 // Camera
 Camera *camera;
 
@@ -123,7 +127,7 @@ void onCursorPosition(GLFWwindow *window, double x, double y) {
 	camera->onCursorPosition(window, x, y);
 }
 
-void update(firework_manager &fManager, int update_num);
+void update(firework_manager &fManager, int update_num, glm::vec3);
 
 // --------------------------------------------------------------------------------
 
@@ -206,12 +210,17 @@ int main() {
 	// ----------------------------------------
 	camera = new GimbalFreeLookCamera(window, glm::vec3(0.0f, 0.2f, 1.4f));
 
+	const int numOfManagers = 50;
+
 	//create Firework Manager to manage all of the fireworks and how they are rendered
-    firework_manager fManager = firework_manager();
+    firework_manager fManager[numOfManagers];
     surface_renderer sRenderer = surface_renderer();
 
-
-	fManager.initRenderer();
+    for(int i = 0; i < numOfManagers; i++){
+        fManager[i].initRenderer();
+        fManager[i].setFworkPDensity(1);
+        fManager[i].setExpPDensity(20);
+    }
 
 	// ----------------------------------------
 	// Main Render loop
@@ -227,7 +236,7 @@ int main() {
 		glfwMakeContextCurrent(window);
 
 		// Set clear (background) colour to black
-		glClearColor(0.0f, 0.2f, 0.4f, 0.0f);
+		glClearColor(0.0f, 0.1f, 0.3f, 0.0f);
 
 		// Clear Screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -250,7 +259,12 @@ int main() {
             updates = 0.0f;
 
             //update the Firework manager
-            update(fManager, update_count);
+            for(int i = 0; i < numOfManagers; i++){
+                float x = 20*cos((PI*2/numOfManagers)*(i));
+                float z = 20*sin((PI*2/numOfManagers)*(i));
+                glm::vec3 pos = glm::vec3(x, 0.0f,z);
+                update(fManager[i], update_count, pos);
+            }
 		}
 
 
@@ -260,8 +274,8 @@ int main() {
 			std::cout << "fps: " << frame_count << std::endl;
 			frame_count = 0;
 			update_count = 0;
-            std::cout << "number of fireworks:           " << fManager.getNumOfFireworks() << std::endl;
-            std::cout << "number of explosion particles: " << fManager.getNumOfExplosionParticles() << std::endl;
+//            std::cout << "number of fireworks:           " << fManager.getNumOfFireworks() << std::endl;
+//            std::cout << "number of explosion particles: " << fManager.getNumOfExplosionParticles() << std::endl;
 		}
 
 		// ----------------------------------------
@@ -269,8 +283,10 @@ int main() {
 		camera->update(dt);
 
         //draw all of the fireworks to the screen
-		fManager.render(camera->getViewMatrix());
-		sRenderer.renderObj(glm::vec3(0.0f, 0.3f, 0.0f), NULL, camera->getViewMatrix());
+        for(int i = 0; i < numOfManagers; i++){
+            fManager[i].render(camera->getViewMatrix());
+        }
+		sRenderer.renderObj(glm::vec3(0.0f, 0.2f, 0.0f), NULL, camera->getViewMatrix());
 
 		// ----------------------------------------
 		// Swap the back and front buffers
@@ -280,7 +296,9 @@ int main() {
 		glfwPollEvents();
 	}
 	//clean up vertex objects
-	fManager.deleteRenderObj();
+	for(int i = 0; i < numOfManagers; i++){
+        fManager[i].deleteRenderObj();
+	}
 
 	glfwDestroyWindow(window);
 
@@ -291,14 +309,14 @@ int main() {
 }
 
 
-void update(firework_manager &fManager, int update_num){
-    //if(update_num == 1){
+void update(firework_manager &fManager, int update_num, glm::vec3 pos){
+    if(update_num == 1){
         float s = 0.1f;
-        glm::vec3 pos, col;
-        pos = glm::vec3(0.0f, 0.0f, -30.0f);
+        double x = ((int)glfwGetTime()*5) % 10;
+        glm::vec3 col;
         col = glm::vec3(0.0f, 0.0f, 0.0f);
-        fManager.createNumFireworks(1, s, pos, col);
-    //}
+        fManager.createNumFireworks(s, pos, col);
+    }
     fManager.update();
 }
 

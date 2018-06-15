@@ -2,7 +2,8 @@
 
 firework_manager::firework_manager()
 {
-
+    fireworkDensity = 1;
+    explosionPDensity = 10;
 }
 
 firework_manager::~firework_manager()
@@ -32,7 +33,7 @@ void firework_manager::update(){
 
     for(size_t a = 0; a < deadFireworks.size(); a++){
         glm::vec3 pos = fireworks.at(a).getPosition();
-        createNumExplosionParticles(30, 0.1, pos);
+        createNumExplosionParticles(0.1, pos);
         fireworks.erase(fireworks.begin() + a);
     }
 
@@ -51,15 +52,15 @@ void firework_manager::createFirework(float size, glm::vec3 pos){
     fireworks.push_back(firewk);
 }
 
-void firework_manager::createNumFireworks(int num, float size, glm::vec3 pos){
-    for(int i = 0; i < num; i++){
+void firework_manager::createNumFireworks(float size, glm::vec3 pos){
+    for(int i = 0; i < fireworkDensity; i++){
         createFirework(size, pos);
         fireworks.back().setColour(glm::vec3(0.0, 0.0, 0.0));
     }
 }
 
-void firework_manager::createNumFireworks(int num, float size, glm::vec3 pos, glm::vec3 col){
-    for(int i = 0; i < num; i++){
+void firework_manager::createNumFireworks(float size, glm::vec3 pos, glm::vec3 col){
+    for(int i = 0; i < fireworkDensity; i++){
         createFirework(size, pos);
         fireworks.back().setColour(col);
     }
@@ -74,9 +75,9 @@ void firework_manager::createExplosionParticle(float size, glm::vec3 pos){
     expParticle.push_back(exp);
 }
 
-void firework_manager::createNumExplosionParticles(int num, float size, glm::vec3 pos){
+void firework_manager::createNumExplosionParticles(float size, glm::vec3 pos){
     glm::vec3 col = createRandomColour();
-    for(int i = 0; i < num; i++){
+    for(int i = 0; i < explosionPDensity; i++){
         createExplosionParticle(size, pos);
         expParticle.back().setColour(col);
     }
@@ -104,6 +105,14 @@ float firework_manager::getFireworkSize(int id){
 
 void firework_manager::setFireworkSize(int id, float s){
     fireworks[id].setSize(s);
+}
+
+void firework_manager::setFworkPDensity(int density){
+    fireworkDensity = density;
+}
+
+void firework_manager::setExpPDensity(int density){
+    explosionPDensity = density;
 }
 
 int firework_manager::getNumOfExplosionParticles(){
