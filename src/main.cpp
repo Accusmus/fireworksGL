@@ -209,6 +209,8 @@ int main() {
 	//create Firework Manager to manage all of the fireworks and how they are rendered
     firework_manager fManager = firework_manager();
     surface_renderer sRenderer = surface_renderer();
+
+
 	fManager.initRenderer();
 
 	// ----------------------------------------
@@ -225,7 +227,7 @@ int main() {
 		glfwMakeContextCurrent(window);
 
 		// Set clear (background) colour to black
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		glClearColor(0.0f, 0.3f, 0.5f, 0.0f);
 
 		// Clear Screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -267,7 +269,7 @@ int main() {
         //draw all of the fireworks to the screen
 		fManager.render(camera->getViewMatrix());
 		float translation[16], sc[16], res[16];
-		translate(-0.0, -20, -30.0, translation);
+		translate(-0.0, 0.0, -30.0, translation);
 		scale(300, 300, 300, sc);
 		multiply44(translation, sc, res);
 		sRenderer.renderObj(glm::vec3(0.0f, 0.3f, 0.0f), res, camera->getViewMatrix());
@@ -292,11 +294,12 @@ int main() {
 
 
 void update(firework_manager &fManager, int update_num){
-    if(update_num == 1 || update_num == 15 || update_num == 30 || update_num == 45){
-        float s = (rand() % 5 + 3) * 0.05f;
-        glm::vec3 pos;
-        pos = glm::vec3(0.0f,-20.0f,-30.0f);
-        fManager.createNumFireworks(10, s, pos);
+    if(update_num == 1){
+        float s = 0.1f;
+        glm::vec3 pos, col;
+        pos = glm::vec3(0.0f, 0.0f, -30.0f);
+        col = glm::vec3(0.0f, 0.0f, 0.0f);
+        fManager.createNumFireworks(1, s, pos, col);
     }
     fManager.update();
 }

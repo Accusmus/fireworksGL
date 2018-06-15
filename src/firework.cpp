@@ -11,7 +11,7 @@ void firework::initFirework(float sz, glm::vec3 initPos){
     glm::vec3 speed;
 
     xAcc = (rand() % 60 - 30)* 0.002;
-    yAcc = (rand() % 20 + 10) * 0.015f;
+    yAcc = (rand() % 20 + 30) * 0.01f;
     zAcc = (rand() % 60 - 30)* 0.002;
 
     speed = glm::vec3(xAcc,yAcc,zAcc);
@@ -32,7 +32,7 @@ void firework::update(){
     acceleration = glm::vec3(0.0f, 0.0f, 0.0f);
     position += velocity;
 
-    if(velocity.y <= -0.05f){
+    if(velocity.y <= -0.15f){
         alive = false;
     }
 }

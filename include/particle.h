@@ -65,6 +65,7 @@ class particle
         glm::vec3 colour;
 
         glm::vec3 gravity;
+        glm::vec3 friction;
 
         float size;
 

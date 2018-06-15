@@ -56,6 +56,10 @@ class explosion_particle: public particle
 
     private:
         int size;
+        float timeOCreate, total;
+        int lifespanCount;
+
+        void calculateFriction();
 };
 
 #endif // EXPLOSION_PARTICLE_H

@@ -32,8 +32,7 @@ void firework_manager::update(){
 
     for(size_t a = 0; a < deadFireworks.size(); a++){
         glm::vec3 pos = fireworks.at(a).getPosition();
-        glm::vec3 col = fireworks.at(a).getColour();
-        createNumExplosionParticles(25, 0.1, pos, col);
+        createNumExplosionParticles(30, 0.1, pos);
         fireworks.erase(fireworks.begin() + a);
     }
 
@@ -55,7 +54,13 @@ void firework_manager::createFirework(float size, glm::vec3 pos){
 void firework_manager::createNumFireworks(int num, float size, glm::vec3 pos){
     for(int i = 0; i < num; i++){
         createFirework(size, pos);
-        glm::vec3 col = createRandomColour();
+        fireworks.back().setColour(glm::vec3(0.0, 0.0, 0.0));
+    }
+}
+
+void firework_manager::createNumFireworks(int num, float size, glm::vec3 pos, glm::vec3 col){
+    for(int i = 0; i < num; i++){
+        createFirework(size, pos);
         fireworks.back().setColour(col);
     }
 }
@@ -64,14 +69,13 @@ void firework_manager::createNumFireworks(int num, float size, glm::vec3 pos){
 //Methods for creating explosion particles
 //=================================================================
 void firework_manager::createExplosionParticle(float size, glm::vec3 pos){
-
-
     explosion_particle exp = explosion_particle();
     exp.initExplosionParticle(size, pos);
     expParticle.push_back(exp);
 }
 
-void firework_manager::createNumExplosionParticles(int num, float size, glm::vec3 pos, glm::vec3 col){
+void firework_manager::createNumExplosionParticles(int num, float size, glm::vec3 pos){
+    glm::vec3 col = createRandomColour();
     for(int i = 0; i < num; i++){
         createExplosionParticle(size, pos);
         expParticle.back().setColour(col);
@@ -107,13 +111,18 @@ void firework_manager::setFireworkSize(int id, float s){
 //======================================================
 
 glm::vec3 firework_manager::createRandomColour(){
-    float r, g, b;
 
-    r = (rand() % 100 + 1) * 0.01f;
-    g = (rand() % 100 + 1) * 0.01f;
-    b = (rand() % 100 + 1) * 0.01f;
+    glm::vec3 colList[7];
+    colList[0] = glm::vec3(0.0,0.0,1.0);
+    colList[1] = glm::vec3(0.0,1.0,0.0);
+    colList[2] = glm::vec3(0.0,1.0,1.0);
+    colList[3] = glm::vec3(1.0,0.0,0.0);
+    colList[4] = glm::vec3(1.0,0.0,1.0);
+    colList[5] = glm::vec3(1.0,1.0,0.0);
+    colList[6] = glm::vec3(1.0,1.0,1.0);
 
-    return glm::vec3(r, g, b);
+
+    return colList[rand() % 7];
 }
 
 //====================================================

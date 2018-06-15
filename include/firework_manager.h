@@ -57,10 +57,11 @@ class firework_manager
         //Methods for creating fireworks
         void createFirework(float size, glm::vec3 pos);
         void createNumFireworks(int num, float size, glm::vec3 pos);
+        void createNumFireworks(int num, float size, glm::vec3 pos, glm::vec3 col);
 
         //Methods for creating explosion particles
         void createExplosionParticle(float sz, glm::vec3 pos);
-        void createNumExplosionParticles(int num, float size, glm::vec3 pos, glm::vec3 col);
+        void createNumExplosionParticles(int num, float size, glm::vec3 pos);
 
         //Getter and Setter Methods
         int getNumOfFireworks();
